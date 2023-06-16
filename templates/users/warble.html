@@ -1,0 +1,22 @@
+<!-- Display the warble -->
+<div class="warble">
+    <p>{{ warble.text }}</p>
+    <p>Posted by: {{ warble.user.username }}</p>
+    <!-- Check if the user has liked the warble -->
+    {% if g.user and warble in g.user.likes %}
+      <!-- Display a filled star icon if the user has liked the warble -->
+      <a href="/warbles/{{ warble.id }}/like" class="like-link"><i class="fas fa-star"></i></a>
+    {% else %}
+      <!-- Display an empty star icon if the user has not liked the warble -->
+      <a href="/warbles/{{ warble.id }}/like" class="like-link"><i class="far fa-star"></i></a>
+    {% endif %}
+  </div>
+  
+  <!-- liked_warbles.html -->
+  {% for warble in liked_warbles %}
+    <div class="warble">
+      <p>{{ warble.text }}</p>
+      <p>Posted by: {{ warble.user.username }}</p>
+      <a href="/warbles/{{ warble.id }}/like" class="like-link"><i class="fas fa-star"></i></a>
+    </div>
+  {% endfor %}
